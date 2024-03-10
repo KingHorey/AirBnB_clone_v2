@@ -9,23 +9,23 @@ then
 	sudo apt install -y nginx
 	sudo service nginx start
 else
-	[ -d /data/web_static/releases/test ] || mkdir -p /data/web_static/releases/test
-	[ -d /data/web_static/shared ] || mkdir -p /data/web_static/shared
+	[ -d /data/web_static/releases/test ] || sudo mkdir -p /data/web_static/releases/test
+	[ -d /data/web_static/shared ] || sudo mkdir -p /data/web_static/shared
 	if [ -L /data/web_static/current ]; 
 	then 
-		rm /data/web_static/current
-		ln -s /data/web_static/releases/test /data/web_static/current
+		sudo rm /data/web_static/current
+		sudo ln -s /data/web_static/releases/test /data/web_static/current
 	else
-		ln -s /data/web_static/releases/test /data/web_static/current
+		sudo ln -s /data/web_static/releases/test /data/web_static/current
 	fi
-	echo "Holberton School" > /data/web_static/releases/test/index.html
-	chown -R ubuntu:ubuntu /data/
+	echo "Holberton School" | sudo tee /data/web_static/releases/test/index.html
+	sudo chown -R ubuntu:ubuntu /data/
 fi
 
 # update Nginx configuration to serve the content of /data/web_static/current/ to hbnb_static
 # create a backup of config file
-cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
+sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
 
 # add the location /hbnb_static/ { } block to the default Nginx configuration
-sed -ie 's/^\tlocation \//\tlocation \/hbnb_static {\n\talias /data/web_static/current/' /etc/nginx/sites-available/default
-	
+export replacement="\tlocation /hbnb_static {\n\t\t alias /data/web_static/current \n\t}\n"
+sudo sed -ie '48a\ '"${replacement}"'' /etc/nginx/sites-available/default;
