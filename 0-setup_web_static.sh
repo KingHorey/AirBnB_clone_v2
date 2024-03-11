@@ -37,7 +37,12 @@ fi
 # create a backup of config file
 sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
 
+# get the line location / is on
+export location
+location=$(grep -n "location /" /etc/nginx/sites-available/default | head -1 | cut -d ":" -f 1)
+
 # add the location /hbnb_static/ { } block to the default Nginx configuration
-export replacement="\tlocation /hbnb_static {\n\t\t alias /data/web_static/current \n\t}\n"
-sudo sed -ie '48a\ '"${replacement}"'' /etc/nginx/sites-available/default;
+export replacement="\tlocation /hbnb_static {\n\t\t alias /data/web_static/current \n"
+sed -i "${location}c\ $replacement" /etc/nginx/sites-available/default
+
 sudo service nginx restart
