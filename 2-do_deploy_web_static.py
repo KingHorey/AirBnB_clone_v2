@@ -8,7 +8,7 @@ def do_deploy(archive_path):
     checks = local(" [ -f {} ]" .format(archive_path))
     if checks.failed:
         return False
-    env.hosts = ['ubuntu@18.234.253.161', 'ubuntu@34.224.4.240']
+    env.hosts = ['18.234.253.161', '34.224.4.240']
     try:
         put(archive_path, '/tmp/')
         fil = archive_path.split('/')[1].split('.')[0]
