@@ -41,7 +41,7 @@ sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.ba
 location=$(grep -n "location /" /etc/nginx/sites-available/default | head -1 | cut -d ":" -f 1)
 
 # add the location /hbnb_static/ { } block to the default Nginx configuration
-export replacement="\tlocation /hbnb_static/ {\n\t\t alias /data/web_static/current \n"
+export replacement="\tlocation /hbnb_static {\n\t\t alias /data/web_static/current \n"
 sed -i "${location}c\ $replacement" /etc/nginx/sites-available/default
 
 # populate index.html with html boilerplate
