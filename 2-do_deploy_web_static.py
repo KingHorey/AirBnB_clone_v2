@@ -13,8 +13,11 @@ def do_deploy(archive_path):
     try:
         put(archive_path, '/tmp/')
         f = archive_path.split('/')[-1].split('.')[0]
-        sudo("tar -xzf /tmp/{} -C /data/web_static/releases/{}".format(f, f))
-        sudo("rm /tmp/{}" .format(fil))
+        sudo("mkdir -p /data/web_static/releases/{}/".format(f))
+        """ directory  archive is to be extracted """
+        dirs = "/data/web_static/releases/{}/".format(f)
+        sudo("tar -xzf /tmp/{} -C {}".format(archive_path, dirs))
+        sudo("rm /tmp/{}" .format(f))
         sudo("rm /data/web_static/current")
         new_link = "/data/web_static/current"
         sudo("ln -sf /data/web_static/releases/{} {}".format(f, new_link))
