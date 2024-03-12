@@ -9,9 +9,10 @@ def do_pack():
     """ Function generates .tgz archive """
     dates = datetime.utcnow().strftime("%Y%m%d%H%M%S")
     local("mkdir versions")
+    file_name = "versions/web_static_{}.tgz".format(dates)
     cmd = local("tar -cvzf versions/web_static_{}.tgz ./web_static"
-                .format(dates))
+                .format(file_name))
     if cmd.failed:
         return None
     else:
-        return cmd
+        return file_name
