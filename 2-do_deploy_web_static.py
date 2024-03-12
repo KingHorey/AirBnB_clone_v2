@@ -12,10 +12,10 @@ def do_deploy(archive_path):
     try:
         put(archive_path, '/tmp/')
         fil = archive_path.split('/')[1].split('.')[0]
-        sudo(f"tar -xzf /tmp/{file} -C /data/web_static/releases/")
+        sudo("tar -xzf /tmp/{} -C /data/web_static/releases/".format(fil))
         sudo("rm /tmp/{}" .format(fil))
         sudo("rm /data/web_static/current")
-        sudo(f"ln -s /data/web_static/releases/{fil} /data/web_static/current")
+        sudo(f"ln -sf /data/web_static/releases/{fil} /data/web_static/current")
         return True
     except Exception:
         return False
