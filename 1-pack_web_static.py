@@ -10,7 +10,7 @@ def do_pack():
     dates = datetime.utcnow().strftime("%Y%m%d%H%M%S")
     local("mkdir versions")
     cmd = local("tar -cvzf ./versions/web_static_{}.tgz ./web_static"
-                .format(dates), capture=True)
+                .format(dates))
     if cmd.failed:
         return None
     else:
