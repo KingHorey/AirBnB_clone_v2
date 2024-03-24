@@ -1,9 +1,7 @@
 #!/usr/bin/python3
 
 """ import Flask """
-
-from flask import Flask
-app = Flask(__name__)
+from . import app
 
 
 @app.route('/', strict_slashes=False)
