@@ -26,8 +26,8 @@ def c_page(text):
     return "C {}".format(text.replace("_", " "))
 
 
-@app.route("/python/<text>")
-@app.route("/python")
+@app.route("/python/<text>", methods=["GET"])
+@app.route("/python", methods=["GET"])
 def python_page(text=None):
     """ return python page """
     if text is None:
