@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 
-from . import app
+""" import Flask """
+
+import Flask
+app = Flask(__name__)
 
 
 @app.route('/', methods=['GET', 'POST'], strict_slashes=False)
