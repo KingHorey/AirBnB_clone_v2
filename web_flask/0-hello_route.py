@@ -2,6 +2,7 @@
 
 from . import app
 
+
 @app.route('/', methods=['GET', 'POST'], strict_slashes=False)
 def home():
     """ return Hello HBNB! """
