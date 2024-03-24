@@ -2,7 +2,7 @@
 
 """ import app variable from __init__"""
 
-import Flask
+from flask import Flask
 app = Flask(__name__)
 
 
