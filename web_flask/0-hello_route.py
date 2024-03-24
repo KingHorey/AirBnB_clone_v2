@@ -2,7 +2,7 @@
 
 """ import Flask """
 
-import Flask
+from flask import Flask
 app = Flask(__name__)
 
 
@@ -13,4 +13,4 @@ def home():
 
 
 if __name__ == "__main__":
-    app.run(port=5000, host='0.0.0.0')
+    app.run()
