@@ -60,6 +60,10 @@ class DBStorage:
                         temp.update({key: value})
             return temp
 
+    def close(self):
+        """ calls remove on the private session attribute """
+        self.__session.close()
+
     def new(self, obj):
         self.__session.add(obj)
 

@@ -26,6 +26,10 @@ class FileStorage:
             return temp
         return FileStorage.__objects
 
+    def close(self):
+        """ deserializes JSON file to objects """
+        self.reload()
+
     def delete(self, obj=None):
         """ delete an object from __objects if it's inside"""
         if obj:
