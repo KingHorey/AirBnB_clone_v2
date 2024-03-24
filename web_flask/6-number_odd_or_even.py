@@ -49,7 +49,7 @@ def return_number(n):
 
 
 @app.route("/number_odd_or_even/<int:n>")
-def odd_even(int):
+def odd_even(n):
     if (isinstance(n, int)):
         if (n % 2 == 0):
             return render_template("6-number_odd_or_even.html",
