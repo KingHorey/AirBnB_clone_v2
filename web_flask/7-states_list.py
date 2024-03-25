@@ -62,7 +62,7 @@ def odd_even(n):
 
 
 @app.teardown_appcontext
-def teardown_session(exception):
+def teardown(exception):
     """ close session """
     storage.close()
 
