@@ -4,6 +4,7 @@
 from flask import Flask
 from flask import render_template
 from models import storage
+from models.state import State
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
@@ -69,7 +70,10 @@ def teardown_session(exception):
 @app.route("/states_list")
 def get_states():
     """ get all states from DBStorage"""
-    states = storage.all("State")
+    states = storage.all(State)
+    if states is not None:
+        """ sort the dictionary by state name """
+        states = sorted(states.values(), key=lambda x: x.name)
     return render_template("7-states_list.html", states=states)
 
 
