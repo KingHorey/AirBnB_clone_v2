@@ -62,7 +62,7 @@ class DBStorage:
 
     def close(self):
         """ calls remove on the private session attribute """
-        self.__session.close()
+        self.__session.remove()
 
     def new(self, obj):
         self.__session.add(obj)
@@ -80,4 +80,4 @@ class DBStorage:
         session = sessionmaker(bind=self.__engine,
                                expire_on_commit=False)
         Session = scoped_session(session)
-        self.__session = Session()
+        self.__session = Session
