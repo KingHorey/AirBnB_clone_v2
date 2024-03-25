@@ -3,6 +3,7 @@
 """ import flask """
 from flask import Flask
 from flask import render_template
+from models import storage
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
@@ -60,8 +61,7 @@ def odd_even(n):
 
 
 @app.teardown_appcontext
-def close_session(exception):
-    from models import storage
+def teardown_session(exception):
     """ close session """
     storage.close()
 
@@ -69,7 +69,6 @@ def close_session(exception):
 @app.route("/states_list")
 def get_states():
     """ get all states from DBStorage"""
-    from models import storage
     states = storage.all("State")
     return render_template("7-states_list.html", states=states)
 
